@@ -40,7 +40,7 @@ const usePokemons = () => {
     ],
     fleeRate: 0.06,
     maxCP: 2021,
-    maxHP: 84,
+    maxHP: 1984,
     image: '../images/loutreDev.png',
     evolutions: null,
     attacks: {
