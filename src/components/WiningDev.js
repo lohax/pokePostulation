@@ -3,38 +3,71 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 import Pokeball from '../images/pokeball_icon.png'
+import loutreDev from '../images/loutreDev.png'
+
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
 import { PokemonContext } from '../context/'
 
-const TopModal = () => {
+import '../sass/confetti.scss'
+
+const WiningDev = () => {
+  const { width, height } = useWindowSize()
   const {
     state,
     setState
   } = useContext(PokemonContext)
 
   const handleClose = () => setState({ showWinModal: false })
+  // const handleConfetti = () => setState({ runConfetti: state.showWinModal })
 
   const LinkLC = "<a href='https://loic-chambost.dev/' target='_blank' />loic-chambost.dev</a>"
-  const linkCV = "<a href='https://loic-chambost.dev/' target='_blank' />Mon Cv</a>"
-  const linkLM = "<a href='https://loic-chambost.dev/' target='_blank' />Lettre de motivation</a>"
+  const linkCV = "<a href='https://candidature-qoqa-loic-chambost/assets/CV_loic_chambost.pdf' target='_blank' />Mon Cv</a>"
+  const linkLM = "<a href='https://candidature-qoqa-loic-chambost/assets/Motivation_loic_chambost.pdf' target='_blank' />Lettre de motivation</a>"
 
   return (
     <>
+      <div className='confetti-overlay'>
+        <Confetti
+          run={state.showWinModal}
+          width={width}
+          height={height}
+          tweenDuration={1000}
+          numberOfPieces={150}
+          recycle={false}
+          confettiSource={{
+            x: width / 2,
+            y: height / 3
+          }}
+
+          // colors={['#CC0000', '#444444', '#FFFFFF', '#F7C505', '#154780', '#1C2B5B']}
+        />
+      </div>
       <Modal
         show={state.showWinModal}
         onHide={handleClose}
         // size='sm'
         autoFocus
       >
+
         <Modal.Header closeButton>
           <Modal.Title><h3>Vous remportez un "pokemon" Légendaire !</h3></Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <h4>
             Bravo l'équipe QoQa!
           </h4>
           <div className='font-weight-bold mt-4'>
             Vous remportez ce fabuleux pokemon !!!
+            <img
+              className='align-top ml-3 '
+              style={{ width: '220px' }}
+              src={loutreDev}
+              alt='loutreDev'
+              fluid
+            />
           </div>
           <div className='mt-4'>
             Pour plus d'informations concernant ses caractéristiques, rendez-vous sur :
@@ -78,4 +111,4 @@ const TopModal = () => {
   )
 }
 
-export default TopModal
+export default WiningDev

@@ -12,6 +12,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 
 const Battle = () => {
   const {
+    setState,
     multiSelectedPoke,
     computerSelectedPoke,
     setMultiSelectedPoke//,
@@ -211,6 +212,7 @@ const Battle = () => {
 
   const nextPokeComputer = () => {
     setMsgGame(msgGame => `${pokeComputer.name} fainted !`)
+    setState({ showWinModal: true })
     // setTimeout(() => {
     //   setComputerState(setComputerState => 'start')
     //   const pickPokeComputer = computerSelectedPoke.shift()

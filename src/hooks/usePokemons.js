@@ -17,7 +17,8 @@ const usePokemons = () => {
   const [state, setState] = useState({
     isPaneOpen: false,
     showModal: true,
-    showWinModal: true
+    showWinModal: false,
+    runConfetti: false
   })
 
   const [selectedPoke, setSelectedPoke] = useState([])
@@ -40,7 +41,7 @@ const usePokemons = () => {
     fleeRate: 0.06,
     maxCP: 2021,
     maxHP: 1984,
-    image: 'https://img.pokemondb.net/artwork/machamp.jpg',
+    image: 'https://candidature-qoqa-loic-chambost.netlify.app/images/loutreDev.png',
     evolutions: null,
     attacks: {
       fast: [
