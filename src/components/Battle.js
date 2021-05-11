@@ -10,6 +10,8 @@ import MsgGame from './MsgGame'
 
 import ListGroup from 'react-bootstrap/ListGroup'
 
+import WiningDev from '../components/WiningDev'
+
 const Battle = () => {
   const {
     setState,
@@ -54,16 +56,9 @@ const Battle = () => {
 
   // Set Pokemon for computer
   useEffect(() => {
-    console.log(computerSelectedPoke)
     const pickPokeComputer = computerSelectedPoke.shift()
     setPokeComputer(pokeComputer => pickPokeComputer)
   }, [])
-  useEffect(() => {
-    console.log(pokeComputer)
-  }, [pokeComputer])
-  useEffect(() => {
-    console.log(pokePlayer)
-  }, [pokePlayer])
 
   useEffect(() => {
     setPokeComputerHpNow(pokeComputerHpNow => pokeComputer.maxHP)
@@ -126,16 +121,15 @@ const Battle = () => {
 
     setMsgGame(msgGame => `${pokePlayer.name} used ${name} <br> and make ${damage} damage !`)
     setTimeout(() => {
-      if (nowHpComputer === 0 && computerSelectedPoke.length === 0) {
+      if (nowHpComputer === 0) {
         setMsgGame(msgGame => `${pokeComputer.name} fainted ! <br> Your ${pokePlayer.name} wins !`)
         setComputerState(setComputerState => 'loose')
         setTimeout(() => {
           setGameOver(gameOver => true)
         }, 2000)
-      } else if (nowHpComputer === 0 && computerSelectedPoke.length > 0) {
-        setComputerState(setComputerState => 'loose')
-        // Launch next pokemon
-        nextPokeComputer()
+        setTimeout(() => {
+          setState({ showWinModal: true })
+        }, 2000)
       } else {
         setMsgGame(msgGame => '')
 
@@ -212,7 +206,9 @@ const Battle = () => {
 
   const nextPokeComputer = () => {
     setMsgGame(msgGame => `${pokeComputer.name} fainted !`)
-    setState({ showWinModal: true })
+    setTimeout(() => {
+      setState({ showWinModal: true })
+    }, 1)
     // setTimeout(() => {
     //   setComputerState(setComputerState => 'start')
     //   const pickPokeComputer = computerSelectedPoke.shift()
@@ -254,8 +250,10 @@ const Battle = () => {
   return (
 
     <div className='container vh100'>
+
       <div className='row row vh100 justify-content-center align-items-center'>
         <div className='col-sm-12'>
+          <WiningDev />
           {/* BATTLE SCREEN CONTAINER */}
           <div className='card px-2 mx-auto battleField'>
 

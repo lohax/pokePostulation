@@ -9,7 +9,6 @@ import PokemonContext from './context/context'
 import usePokemons from './hooks/usePokemons'
 
 import TopModal from './components/TopModal'
-import WiningDev from './components/WiningDev'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './sass/loader.scss'
@@ -54,7 +53,6 @@ function App () {
       <Router>
         <div className='App'>
           <TopModal />
-          <WiningDev />
 
           <Header />
           <div>

@@ -40,8 +40,8 @@ const usePokemons = () => {
     ],
     fleeRate: 0.06,
     maxCP: 2021,
-    maxHP: 1984,
-    image: 'https://candidature-qoqa-loic-chambost.netlify.app/images/loutreDev.png',
+    maxHP: 84,
+    image: '../images/loutreDev.png',
     evolutions: null,
     attacks: {
       fast: [

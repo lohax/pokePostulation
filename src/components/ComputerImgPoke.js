@@ -1,9 +1,10 @@
 import React from 'react'
 import Image from 'react-bootstrap/Image'
 import Fade from 'react-reveal/Fade'
+import loutreDev from '../images/loutreDev.png'
 
 const ComputerImgPoke = (image, name, ComputerImgPoke) => {
-  const src = image.src
+  const src = loutreDev
   const alt = image.alt
   const action = image.pokeComputerState
   let animated

@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 import Pokeball from '../images/pokeball_icon.png'
 import loutreDev from '../images/loutreDev.png'
+import cv from '../assets/CV_loic_chambost.pdf'
+import motiv from '../assets/Motivation_loic_chambost.pdf'
 
 import { useWindowSize } from 'react-use'
 import Confetti from 'react-confetti'
@@ -19,18 +21,21 @@ const WiningDev = () => {
     setState
   } = useContext(PokemonContext)
 
+  useEffect(() => {
+    setState({ runConfetti: false })
+  }, [])
+
   const handleClose = () => setState({ showWinModal: false })
-  // const handleConfetti = () => setState({ runConfetti: state.showWinModal })
 
   const LinkLC = "<a href='https://loic-chambost.dev/' target='_blank' />loic-chambost.dev</a>"
-  const linkCV = "<a href='https://candidature-qoqa-loic-chambost/assets/CV_loic_chambost.pdf' target='_blank' />Mon Cv</a>"
-  const linkLM = "<a href='https://candidature-qoqa-loic-chambost/assets/Motivation_loic_chambost.pdf' target='_blank' />Lettre de motivation</a>"
+  const linkCV = `<a href=${cv} target='_blank' />Mon Cv</a>`
+  const linkLM = `<a href=${motiv} target='_blank' />Lettre de motivation</a>`
 
   return (
     <>
       <div className='confetti-overlay'>
         <Confetti
-          run={state.showWinModal}
+          run={state.runConfetti}
           width={width}
           height={height}
           tweenDuration={1000}
@@ -40,14 +45,13 @@ const WiningDev = () => {
             x: width / 2,
             y: height / 3
           }}
-
-          // colors={['#CC0000', '#444444', '#FFFFFF', '#F7C505', '#154780', '#1C2B5B']}
         />
       </div>
+
       <Modal
         show={state.showWinModal}
         onHide={handleClose}
-        // size='sm'
+        backdrop='static'
         autoFocus
       >
 
